@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import message.ChatMessage;
 
 /**
@@ -52,7 +50,18 @@ public class ClientBackEnd implements Runnable {
                 ex.printStackTrace();
             }
         }
-        
+    }
+    
+    public void sendMessage(ChatMessage cm) {
+
+        try {
+            // kirjoittaa datan sockettiin, käyttis päättää, koska lähetetään
+            output.writeObject(cm);
+            // varmistaa, että data lähtee heti, lähtis ilman tätäkin
+            output.flush();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }
