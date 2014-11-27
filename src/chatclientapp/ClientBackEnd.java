@@ -51,7 +51,7 @@ public class ClientBackEnd implements Runnable {
                 Platform.runLater(new Runnable(){
                     @Override
                     public void run(){
-                        controller.updateTextArea(m.getUserName() + ":" + m.getChatMessage());
+                        controller.updateTextArea(m.getUserName() + " : " + m.getChatMessage());
                     }
                 });
             } catch (IOException | ClassNotFoundException ex) {

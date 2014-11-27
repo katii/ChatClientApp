@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -9,14 +10,47 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatclientapp.FXMLDocumentController">
    <left>
-      <TextArea fx:id="chatMessageArea" editable="false" prefHeight="358.0" prefWidth="601.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="chatMessageArea" editable="false" prefHeight="358.0" prefWidth="601.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </TextArea>
    </left>
    <bottom>
       <HBox prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#sendChatMessage" text="Lähetä" />
-            <TextField fx:id="chatMessage" prefHeight="25.0" prefWidth="518.0" />
+            <TextField fx:id="chatMessage" prefHeight="25.0" prefWidth="470.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </TextField>
+            <ColorPicker fx:id="colorPicker" onAction="#setTextColor">
+               <HBox.margin>
+                  <Insets right="5.0" top="5.0" />
+               </HBox.margin>
+            </ColorPicker>
+            <Button mnemonicParsing="false" onAction="#sendChatMessage" prefHeight="25.0" prefWidth="61.0" text="Lähetä">
+               <HBox.margin>
+                  <Insets right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
    </bottom>
+   <top>
+      <HBox prefHeight="29.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" text="Vaihda nimimerkki">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

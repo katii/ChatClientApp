@@ -5,13 +5,16 @@
  */
 package chatclientapp;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import message.ChatMessage;
 
 /**
@@ -34,6 +37,7 @@ public class FXMLDocumentController implements Initializable {
         ChatMessage cm = new ChatMessage();
         cm.setUserName("Anonymous");
         cm.setChatMessage(chatMessage.getText());
+        cm.setMessageColor("#6680e6");
         backEnd.sendMessage(cm);
     }
     
@@ -48,6 +52,16 @@ public class FXMLDocumentController implements Initializable {
     
     public void updateTextArea(String message){
         chatMessageArea.appendText(message + "\n");
+    }
+    
+    @FXML
+    public void setTextColor(){
+        // poistais värin rgb arvon napista
+        // colorpicker.setStyle("-fx-color-label-visible: false ;");    
+        
+        ColorPicker colorPicker = new ColorPicker(Color.BLUE);
+        
+        System.out.println("nyt tarttis vaihtaa väri");
     }
     
 }
