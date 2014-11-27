@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import javafx.application.Platform;
 import message.ChatMessage;
 
 /**
@@ -20,12 +21,14 @@ public class ClientBackEnd implements Runnable {
     private Socket clientSocket;
     private ObjectOutputStream output;
     private ObjectInputStream input;
+    private FXMLDocumentController controller;
     
-    public ClientBackEnd(){
+    public ClientBackEnd(FXMLDocumentController controller){
         
         try {
             // 127.0.0.1. = localhost
             clientSocket = new Socket("localhost", 3010);
+            this.controller = controller;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -44,8 +47,13 @@ public class ClientBackEnd implements Runnable {
         // read and write from socket until user closes the app
         while(true){
             try {
-                ChatMessage m = (ChatMessage)input.readObject();
-                System.out.println(m.getChatMessage());
+                final ChatMessage m = (ChatMessage)input.readObject();
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run(){
+                        controller.updateTextArea(m.getUserName() + ":" + m.getChatMessage());
+                    }
+                });
             } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
             }

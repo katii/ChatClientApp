@@ -10,7 +10,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import message.ChatMessage;
 
 /**
  *
@@ -19,17 +21,33 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    TextField chatMessage;
+    @FXML
+    TextArea chatMessageArea;
+    
+    ClientBackEnd backEnd;
+    Thread backThread;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    public void sendChatMessage(ActionEvent ae){
+        
+        ChatMessage cm = new ChatMessage();
+        cm.setUserName("Anonymous");
+        cm.setChatMessage(chatMessage.getText());
+        backEnd.sendMessage(cm);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        backEnd = new ClientBackEnd(this);
+        backThread = new Thread(backEnd);
+        backThread.setDaemon(true);
+        // kutsuu meidän kutsuman objectin runnia, luo säikeen
+        backThread.start();
     }    
+    
+    public void updateTextArea(String message){
+        chatMessageArea.appendText(message + "\n");
+    }
     
 }
