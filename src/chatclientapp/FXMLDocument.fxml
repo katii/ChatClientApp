@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatclientapp.FXMLDocumentController">
    <left>
       <TextArea fx:id="chatMessageArea" editable="false" prefHeight="358.0" prefWidth="601.0" BorderPane.alignment="CENTER">
@@ -40,12 +39,12 @@
    <top>
       <HBox prefHeight="29.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField>
+            <TextField fx:id="userName">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" text="Vaihda nimimerkki">
+            <Button fx:id="userNameButton" mnemonicParsing="false" onAction="#setUserName" text="Vaihda nimimerkki">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>

@@ -27,6 +27,8 @@ public class FXMLDocumentController implements Initializable {
     TextField chatMessage;
     @FXML
     TextArea chatMessageArea;
+    @FXML
+    TextField userName;
     
     ClientBackEnd backEnd;
     Thread backThread;
@@ -35,7 +37,7 @@ public class FXMLDocumentController implements Initializable {
     public void sendChatMessage(ActionEvent ae){
         
         ChatMessage cm = new ChatMessage();
-        cm.setUserName("Anonymous");
+        cm.setUserName("as");
         cm.setChatMessage(chatMessage.getText());
         cm.setMessageColor("#6680e6");
         backEnd.sendMessage(cm);
@@ -64,4 +66,12 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("nyt tarttis vaihtaa väri");
     }
     
+    @FXML
+    public void setUserName(){
+        System.out.println("nyt tarttis vaihtaa nimimerkki");
+        ChatMessage cm = new ChatMessage();
+        cm.setUserName(userName.getText());
+        String temp = cm.getUserName();
+        System.out.println("user name: " + temp);
+    }
 }
